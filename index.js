@@ -20,10 +20,7 @@ mongoose.connect("mongodb+srv://"+process.env.dbUsername+":"+process.env.dbPass+
 import userRoutes from './views/user.js';
 import adminRoutes from './views/admin.js';
 import blogRoutes from './views/blog.js';
-// const commentRoutes=require('./views/comment.js');
-
-//importing login handler
-import * as loginHandler from "./loginHandler.js";
+import commentRoutes from './views/comment.js';
 
 //middlewares
 app.get("/",function(req,res){
@@ -32,8 +29,8 @@ app.get("/",function(req,res){
 
 app.use("/users",userRoutes);
 app.use("/admin",adminRoutes);
- app.use("/blogs",blogRoutes);
-// app.use("/comments",eventRoutes);
+app.use("/blogs",blogRoutes);
+app.use("/comments",commentRoutes);
 
 
 

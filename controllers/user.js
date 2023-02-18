@@ -19,18 +19,47 @@ function userHome(req,res){
  }
 //logic to create new user in our database
 function createUser(req,res){
-   const newUser=new userSchema(req.body)
-   newUser.save()
-   return(
-    res.send("New user created successfully")
-   )
+   //checking if email already exist in out database 
+   userSchema.findOne({email:req.body.email},function(err,result){
+      if(err){
+         res.send("Error in iterating user's database: "+err);
+      }else{
+         if(result==null){
+            //we can create user with given email id
+            const newUser=new userSchema(req.body)
+            newUser.save()
+            return(
+             res.send("New user created successfully")
+            )
+         }
+         else{
+            res.send("User already exist with this email id ")
+         }
+      }
+   })
+
     
 }
 //logic to log in user
-function logUser(req,res){
-    return(
-     res.send('logging')
-    )
+function loginUser(req,res){
+   //finding user with email id in our database
+   userSchema.findOne({email:req.body.email},function(err,result){
+      if(err){
+         console.log("Error in finding user in our database: "+err);
+      }else if(result!=null){
+         //verifying password
+         if(result.pass==req.body.pass){
+            res.send('login success')
+         }
+         //wrong password enetered by user
+         else{
+            res.send('incorrect password')
+         }
+         //no such email in our database
+      }else{
+         res.send("No such user exist")
+      }
+   })
      
  }
  //logic to allow user to post comment 
@@ -59,6 +88,5 @@ function unlikePost(req,res){
     return(
      res.send('unlinking post')
     )
-     
  }
-export {userHome,createUser,logUser,postComment,deleteComment,likePost,unlikePost}
+export {userHome,createUser,loginUser,postComment,deleteComment,likePost,unlikePost}

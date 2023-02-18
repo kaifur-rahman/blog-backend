@@ -15,6 +15,9 @@ router.get("/",userController.userHome);
 //sigining up user with their details
 router.post("/signup",userController.createUser);
 
+//logging in user with their details
+router.post("/login",userController.loginUser);
+
 //user posting a comment
 router.post("/postComment",userController.postComment);
 
