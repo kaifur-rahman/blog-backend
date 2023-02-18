@@ -16,18 +16,22 @@ const port=4000;
 mongoose.set('strictQuery', false);
 mongoose.connect("mongodb+srv://"+process.env.dbUsername+":"+process.env.dbPass+"@cluster0.179uszz.mongodb.net/?retryWrites=true&w=majority") .then(() => console.log('Database Connected!'));
 
-//routers/views import
+//importing routers/views 
 import userRoutes from './views/user.js';
-// const adminRoutes=require('./views/admin.js');
+import adminRoutes from './views/admin.js';
 import blogRoutes from './views/blog.js';
 // const commentRoutes=require('./views/comment.js');
 
+//importing login handler
+import * as loginHandler from "./loginHandler.js";
+
 //middlewares
 app.get("/",function(req,res){
-    res.send('login/sign up page')
+    res.send('This is homepage: goto /login with email and pass input post method')
 });
+
 app.use("/users",userRoutes);
-// app.use("/admin",eventRoutes);
+app.use("/admin",adminRoutes);
  app.use("/blogs",blogRoutes);
 // app.use("/comments",eventRoutes);
 

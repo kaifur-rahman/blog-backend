@@ -4,12 +4,17 @@ import mongoose from 'mongoose';
 
 //importing models
 import userSchema from "../models/user.js";
+import blogSchema from "../models/blog.js";
 
-//logic to display all posts 
+//logic to display all blog posts when user logs in
 function userHome(req,res){
-    return(
-     res.send('User home page after logging in displaying all posts')
-    )
+   blogSchema.find(function(err,blogs){
+      if(err){
+         res.send("Error in finding blogs from database");
+      }else{
+         res.send(blogs);
+      }
+   })
      
  }
 //logic to create new user in our database
