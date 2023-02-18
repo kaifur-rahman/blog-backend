@@ -18,17 +18,4 @@ router.post("/signup",userController.createUser);
 //logging in user with their details
 router.post("/login",userController.loginUser);
 
-//user posting a comment
-router.post("/postComment",userController.postComment);
-
-//user posting a comment
-router.post("/deleteComment",userController.deleteComment);
-
-//user liking a post
-router.post("/likePost",userController.likePost);
-
-//user unliking a post
- router.post("/unlikePost",userController.unlikePost);
- 
- 
     export default router
