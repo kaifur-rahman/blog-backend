@@ -10,6 +10,9 @@ import * as adminController from "../controllers/admin.js";
 //to create new admin credentials
 router.post("/createNewAdmin",adminController.createAdmin);
 
+//login admin 
+router.post("/login",adminController.login);
+
 //homepage after user logs in to display all posts by admin
 router.get("/:AdminName",adminController.adminHome);
 

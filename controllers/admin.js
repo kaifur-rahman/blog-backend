@@ -10,6 +10,7 @@ import blogSchema from "../models/blog.js";
 //logic to create new admin credentials
 function createAdmin(req,res){
     //it must be done from backend for security purpose
+    //for sample email:kaifur@yahoo.com pass:1234
 };
 
 //logic to display all post posted by particular admin
@@ -22,6 +23,25 @@ function adminHome(req,res){
         }
     })
 };
+
+//login admin
+function login(req,res){
+    adminSchema.findOne({email:req.body.email},function(err,result){
+        if(err){
+            res.send("Error in searching email in admin database: "+err);
+        }else{
+            if(result!=null){
+                if(result.pass==req.body.pass){
+                    res.send('login success')
+                }else{
+                    res.send('incorrect password')
+                }
+            }else{
+                res.send("No such admin exist");
+            }
+        }
+    })
+}
 
 //logic to create new post by particular admin
 function createBlog(req,res){
@@ -71,4 +91,4 @@ function deleteBlog(req,res){
 };
 
 
-export {adminHome,createAdmin,createBlog,updateBlog,deleteBlog}
+export {adminHome,createAdmin,login,createBlog,updateBlog,deleteBlog}

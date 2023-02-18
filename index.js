@@ -24,7 +24,7 @@ import commentRoutes from './views/comment.js';
 
 //middlewares
 app.get("/",function(req,res){
-    res.send('This is homepage: goto /login with email and pass input post method')
+    res.send('This is homepage: ')
 });
 
 app.use("/users",userRoutes);
