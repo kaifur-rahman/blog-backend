@@ -90,5 +90,4 @@ function deleteBlog(req,res){
    
 };
 
-
 export {adminHome,createAdmin,login,createBlog,updateBlog,deleteBlog}
